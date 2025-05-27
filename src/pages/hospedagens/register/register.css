@@ -1,0 +1,84 @@
+.registration-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.form-header h1 {
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.form-header h2 {
+  font-size: 30px;
+  font-weight: normal;
+}
+
+.form-header h3 {
+  font-size: 34px;
+  font-weight: bold;
+  color: #000000;
+}
+
+.registration-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.form-group label {
+  font-size: 14px;
+  color: #333;
+}
+
+.form-group input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.form-row {
+  display: flex;
+  gap: 15px;
+}
+
+.half-width {
+  flex: 1;
+}
+
+.one-third-width {
+  flex: 1;
+  max-width: 30%;
+}
+
+.two-thirds-width {
+  flex: 2;
+}
+
+.next-button {
+  background-color: #F97F2A;
+  color: rgb(0, 0, 0);
+  padding: 18px;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+.next-button:hover {
+  background-color: #f39c2a;
+}
