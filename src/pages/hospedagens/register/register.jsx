@@ -1,11 +1,12 @@
 import React from 'react';
 import './register.css';
 
+
 const RegistrationForm = () => {
   return (
     <div className="registration-container">
       <div className="form-header">
-        <h1>Pet Family</h1>
+        <h1>PetFamily</h1>
         <h2>insira</h2>
         <h3>Seus dados</h3>
       </div>

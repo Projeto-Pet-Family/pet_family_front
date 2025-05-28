@@ -2,7 +2,6 @@
   max-width: 500px;
   margin: 0 auto;
   padding: 20px;
-  font-family: Arial, sans-serif;
 }
 
 .form-header {
@@ -16,6 +15,7 @@
 }
 
 .form-header h2 {
+  color: #ccc;
   font-size: 30px;
   font-weight: normal;
 }
@@ -45,8 +45,17 @@
 
 .form-group input {
   padding: 10px;
+  border: 1px solid #e7e7e7;
+  border-radius: 20px;
+  background-color: #e7e7e7;
+  font-size: 14px;
+  box-shadow: 0 3px 5px #00000036;
+}
+
+.registration-form input {
+  padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 10px;
   font-size: 14px;
 }
 
