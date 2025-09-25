@@ -9,7 +9,6 @@ export default function LoginScreen() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Lógica de login aqui
     console.log({ email, cpf, password, rememberMe });
   };
 
@@ -76,10 +75,10 @@ export default function LoginScreen() {
           <p>Ou entrar com:</p>
           <div className="social-icons">
             <button className="social-button">
-              <span className="icon">f</span> {/* Simulando ícone do Facebook */}
+              <span className="icon">f</span>
             </button>
             <button className="social-button">
-              <span className="icon">G</span> {/* Simulando ícone do Google */}
+              <span className="icon">G</span>
             </button>
           </div>
         </div>
