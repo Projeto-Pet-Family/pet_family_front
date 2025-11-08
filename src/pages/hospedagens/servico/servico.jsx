@@ -1,19 +1,20 @@
 import React from "react";
-import "./home-page.css";
+import "./servico.css";
 import { Link } from 'react-router-dom';
 import { 
   Home, Calendar, Wrench, Users, MessageSquare, 
   FileText, Settings, Boxes 
 } from "lucide-react";
 
-const HomePage = () => {
+const ServicoScreen = () => {
+
   return (
     <div className="container">
       <aside className="sidebar">
         <h2 className="logo">PetFamily </h2>
 
-<nav className="menu">
-          <Link className="menu-item active" to='/home'>
+ <nav className="menu">
+          <Link className="menu-item" to='/home'>
             <Home size={16}/> Início
           </Link>
 
@@ -21,7 +22,7 @@ const HomePage = () => {
             <Calendar size={16}/> Agendamentos
           </Link>
 
-          <Link className="menu-item" to="/servico">
+          <Link className="menu-item active" to="/servico">
             <Wrench size={16}/> Serviços
           </Link>
 
@@ -50,11 +51,10 @@ const HomePage = () => {
       </aside>
 
       <main className="content">
-        <h1>Início</h1>
-        <p>Bem vindo Hotel</p>
+        <h1>Serviço</h1>
       </main>
     </div>
   );
 };
 
-export default HomePage;
+export default ServicoScreen;

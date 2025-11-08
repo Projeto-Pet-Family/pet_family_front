@@ -72,3 +72,72 @@
   font-size: 36px;
   margin-bottom: 10px;
 }
+
+.filter-box {
+  margin: 15px 0;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.lista-agendamentos {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ag-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.actions button {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  background: #ffd392;
+}
+
+.actions button:hover {
+  background: #ffba54;
+}
+
+.actions .button-negar {
+  background: #ff7474;
+}
+
+.actions .button-negar:hover {
+  background: #ff4b4b;
+}
+
+.actions .button-confirmar{
+  background: #85dd4f;
+}
+.actions .button-confirmar:hover{
+  background: #87d358 ;
+}
+
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup {
+  background: white;
+  padding: 20px;
+  width: 350px;
+  border-radius: 12px;
+}
