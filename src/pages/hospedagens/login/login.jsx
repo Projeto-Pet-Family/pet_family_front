@@ -1,16 +1,18 @@
 import { useState } from 'react';
 import './login.css';
 
-export default function LoginScreen() {
-  const [email, setEmail] = useState('');
-  const [cpf, setCpf] = useState('');
-  const [password, setPassword] = useState('');
+
+const LoginScreen = () => {
+  
+  const [email, setEmail] = useState("");
+  const [cpf, setCpf] = useState("");
+  const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log({ email, cpf, password, rememberMe });
-  };
+  }
 
   return (
     <div className="login-container">
@@ -85,4 +87,6 @@ export default function LoginScreen() {
       </div>
     </div>
   );
-}
+};
+
+export default LoginScreen;

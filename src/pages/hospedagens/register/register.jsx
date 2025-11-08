@@ -7,7 +7,7 @@ const RegistrationForm = () => {
     <div className="registration-container">
       <div className="form-header">
         <h1>PetFamily</h1>
-        <h2>insira</h2>
+        <h2>Insira</h2>
         <h3>Seus dados</h3>
       </div>
       

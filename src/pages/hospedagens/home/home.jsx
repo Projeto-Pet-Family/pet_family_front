@@ -9,6 +9,10 @@ const HomeScreen = () => {
     navigate('/register'); 
   };
 
+  const handleNavigateToLogin = () => {
+    navigate('/login');
+  };
+
   return (
     <div className="home-container">
       <div className="logo-container">
@@ -20,7 +24,14 @@ const HomeScreen = () => {
           className="main-button"
           onClick={handleNavigateToRegister}
         >
-          Tenho uma hospedagem
+          Quero cadastrar minha hospedagem
+        </button>
+
+        <button 
+          className="main-button"
+          onClick={handleNavigateToLogin}
+        >
+          Já tenho Cadastro
         </button>
       </div>
     </div>
