@@ -88,9 +88,10 @@
 
 .ag-card {
   background: #fff;
-  border: 1px solid #ddd;
+  border: 1px solid none;
   border-radius: 10px;
   padding: 12px;
+  box-shadow: 0px 2px 5px #2424244d;
 }
 
 .actions {
@@ -126,6 +127,16 @@
   background: #87d358 ;
 }
 
+.button-fechar{
+  background: #ffba54;
+  border: none;
+  border-radius: 10%;
+  padding: 5px;
+} 
+.button-fechar:hover{
+  background: #ffd392;
+} 
+
 .popup-overlay {
   position: fixed;
   inset: 0;
@@ -139,5 +150,9 @@
   background: white;
   padding: 20px;
   width: 350px;
+  gap: 5px;
   border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items:center;
 }

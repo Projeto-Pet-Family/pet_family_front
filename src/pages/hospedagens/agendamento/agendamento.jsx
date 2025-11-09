@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./agendamento.css";
+import { getPets } from "../services/pets"
 import { Link } from 'react-router-dom';
 
 import { 
@@ -11,12 +12,8 @@ const Agendamento = () => {
   const [statusFiltro, setStatusFiltro] = useState("em_aprovacao");
   const [popupData, setPopupData] = useState(null);
 
-  // MOCK — substituir depois pela API
-  const lista = [
-    { id: 1, nome: "Maria Silva", data: "10/11/2025", status: "em_aprovacao" },
-    { id: 2, nome: "João Pereira", data: "11/11/2025", status: "aprovado" },
-    { id: 3, nome: "Carlos Souza", data: "12/11/2025", status: "negado" },
-  ];
+
+  const lista = getPets;
 
   const filtrados = lista.filter(
     (item) => statusFiltro === "todos" || item.status === statusFiltro
@@ -33,6 +30,7 @@ const Agendamento = () => {
   const handleNegar = (id) => {
     console.log("Negado:", id);
   };
+
 
   return (
     <div className="container">
@@ -97,20 +95,26 @@ const Agendamento = () => {
         </div>
 
 
-        <div className="lista-agendamentos">
-          {filtrados.map((item) => (
-            <div key={item.id} className="ag-card">
-              <strong>{item.nome}</strong>
-              <p>Data: {item.data}</p>
+       <div className="lista-agendamentos">
+  {filtrados.map((item) => (
+    <div key={item.id} className="ag-card">
+      <strong>{item.nome}</strong>
+      <p>Data: {item.data}</p>
 
-              <div className="actions">
-                <button onClick={() => handleVerMais(item)}>Ver mais</button>
-                <button className="button-confirmar" onClick={() => handleConfirmar(item.id)}>Confirmar</button>
-                <button className="button-negar" onClick={() => handleNegar(item.id)}>Negar</button>
-              </div>
-            </div>
-          ))}
-        </div>
+      <div className="actions">
+        <button onClick={() => handleVerMais(item)}>Ver mais</button>
+
+        {item.status === "em_aprovacao" && (
+          <>
+            <button className="button-confirmar" onClick={() => handleConfirmar(item.id)}>Confirmar</button>
+            <button className="button-negar" onClick={() => handleNegar(item.id)}>Negar</button>
+          </>
+        )}
+      </div>
+    </div>
+  ))}
+</div>
+
       </main>
 
       {popupData && (
@@ -121,7 +125,7 @@ const Agendamento = () => {
             <p>Data: {popupData.data}</p>
             <p>Status: {popupData.status}</p>
 
-            <button onClick={() => setPopupData(null)}>Fechar</button>
+            <button className="button-fechar"onClick={() => setPopupData(null)}>Fechar</button>
           </div>
         </div>
       )}
