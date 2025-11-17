@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./agendamento.css";
-import { getPets } from "../services/pets"
+
 import { Link } from 'react-router-dom';
 
 import { 
@@ -12,8 +12,7 @@ const Agendamento = () => {
   const [statusFiltro, setStatusFiltro] = useState("em_aprovacao");
   const [popupData, setPopupData] = useState(null);
 
-
-  const lista = getPets;
+  const lista = 1;
 
   const filtrados = lista.filter(
     (item) => statusFiltro === "todos" || item.status === statusFiltro
