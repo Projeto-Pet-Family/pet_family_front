@@ -1,9 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import "./mensagens.css";
 import { Link } from 'react-router-dom';
 import { Home, Calendar, Wrench, Users, MessageSquare, FileText, Settings, Boxes } from "lucide-react";
 
 const Mensagens = () => {
+
+  // Lista de conversas (você poderá puxar isso da API depois)
+  const conversas = [
+    {
+      id: 1,
+      nome: "Ana Souza",
+      preview: "Oi, tenho uma dúvida sobre a hospedagem...",
+      mensagens: [
+        { autor: "cliente", texto: "Oi, tenho uma dúvida sobre a hospedagem." },
+        { autor: "voce", texto: "Claro! Como posso ajudar?" },
+      ]
+    },
+    {
+      id: 2,
+      nome: "Carlos Lima",
+      preview: "Meu pet tem alergia, posso levar ração?",
+      mensagens: [
+        { autor: "cliente", texto: "Meu pet tem alergia, posso levar ração?" }
+      ]
+    },
+    {
+      id: 3,
+      nome: "Joana Martins",
+      preview: "Queria saber os horários disponíveis :)",
+      mensagens: [
+        { autor: "cliente", texto: "Queria saber os horários disponíveis :)" }
+      ]
+    }
+  ];
+
+  // Estado da conversa selecionada
+  const [selecionada, setSelecionada] = useState(null);
+
   return (
     <div className="container">
       <aside className="sidebar">
@@ -25,6 +58,64 @@ const Mensagens = () => {
 
       <main className="content">
         <h1>Mensagens</h1>
+
+        <div className="message-layout">
+
+          {/* LISTA DE CONVERSAS */}
+          <div className="chat-list">
+            {conversas.map((c) => (
+              <div 
+                key={c.id}
+                className={`chat-item ${selecionada?.id === c.id ? "active-chat" : ""}`}
+                onClick={() => setSelecionada(c)}
+              >
+                <strong>{c.nome}</strong>
+                <p>{c.preview}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* JANELA DO CHAT */}
+          <div className="chat-window">
+            
+            {/* Cabeçalho */}
+            <div className="chat-header">
+              {selecionada ? (
+                <strong>{selecionada.nome}</strong>
+              ) : (
+                <strong>Selecione uma conversa</strong>
+              )}
+            </div>
+
+            {/* Corpo do chat */}
+            <div className="chat-body">
+              {selecionada ? (
+                selecionada.mensagens.map((m, index) => (
+                  <p 
+                    key={index} 
+                    className={m.autor === "voce" ? "msg-voce" : "msg-cliente"}
+                  >
+                    {m.texto}
+                  </p>
+                ))
+              ) : (
+                <p className="system-msg">Nenhuma conversa aberta.</p>
+              )}
+            </div>
+
+            {/* Campo de mensagem */}
+            <div className="chat-input-area">
+              <input 
+                type="text" 
+                placeholder="Digite uma mensagem..." 
+                disabled={!selecionada}
+              />
+              <button disabled={!selecionada}>Enviar</button>
+            </div>
+
+          </div>
+
+        </div>
       </main>
     </div>
   );

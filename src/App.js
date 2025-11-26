@@ -24,10 +24,11 @@ export default function App() {
           <Route path="/servico" element={<ServicoScreen />} />
           <Route path="/funcionario" element={<FuncionarioScreen />} />
           <Route path="/documentos" element={<Documentos />} />
-          <Route path="/mensagens" element={<Mensagens />} />
+          <Route path="/mensagem" element={<Mensagens />} />
           <Route path="/configuracoes" element={<Configuracoes />} />
         </Routes>
       </BrowserRouter>
     </div>
   );
 }
+  

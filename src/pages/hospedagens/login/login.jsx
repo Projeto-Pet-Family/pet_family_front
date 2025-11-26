@@ -74,17 +74,7 @@ const LoginScreen = () => {
               Não tem conta? <a href="#">Clique aqui!</a>
             </div>
 
-            <div className="social-login">
-              <p>Ou entrar com:</p>
-              <div className="social-icons">
-                <button className="social-button">
-                  <span className="icon">f</span>
-                </button>
-                <button className="social-button">
-                  <span className="icon">G</span>
-                </button>
-              </div>
-          </div>
+            
         
         </div>
             <div className="login-backgroud">
