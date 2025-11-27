@@ -61,7 +61,7 @@ const Mensagens = () => {
 
         <div className="message-layout">
 
-          {/* LISTA DE CONVERSAS */}
+
           <div className="chat-list">
             {conversas.map((c) => (
               <div 
@@ -75,10 +75,9 @@ const Mensagens = () => {
             ))}
           </div>
 
-          {/* JANELA DO CHAT */}
+
           <div className="chat-window">
-            
-            {/* Cabeçalho */}
+
             <div className="chat-header">
               {selecionada ? (
                 <strong>{selecionada.nome}</strong>
@@ -87,7 +86,7 @@ const Mensagens = () => {
               )}
             </div>
 
-            {/* Corpo do chat */}
+  
             <div className="chat-body">
               {selecionada ? (
                 selecionada.mensagens.map((m, index) => (
@@ -103,7 +102,6 @@ const Mensagens = () => {
               )}
             </div>
 
-            {/* Campo de mensagem */}
             <div className="chat-input-area">
               <input 
                 type="text" 

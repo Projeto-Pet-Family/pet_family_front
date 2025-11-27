@@ -1,11 +1,11 @@
-/* layout geral da área de mensagens */
+
 .message-layout {
   display: flex;
   gap: 20px;
   height: calc(100% - 70px);
 }
 
-/* lista de conversas */
+
 .chat-list {
   width: 280px;
   background: #f4f4f4;
@@ -27,7 +27,7 @@
   background: #ececec;
 }
 
-/* janela do chat */
+
 .chat-window {
   flex: 1;
   background: #fff;
@@ -55,7 +55,7 @@
   margin-top: 40px;
 }
 
-/* área de digitação */
+
 .chat-input-area {
   display: flex;
   padding: 10px;
@@ -86,12 +86,12 @@
 }
 
 
-/* conversa ativa na lista */
+
 .active-chat {
   background: #ffe0c2 !important;
 }
 
-/* mensagens */
+
 .msg-cliente {
   background: #e8e8e8;
   padding: 10px;
