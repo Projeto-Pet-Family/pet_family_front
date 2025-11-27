@@ -1,11 +1,10 @@
-import React, { useState } from "react";
 import "./mensagens.css";
+import { useState } from "react";
 import { Link } from 'react-router-dom';
 import { Home, Calendar, Wrench, Users, MessageSquare, FileText, Settings, Boxes } from "lucide-react";
 
 const Mensagens = () => {
 
-  // Lista de conversas (você poderá puxar isso da API depois)
   const conversas = [
     {
       id: 1,
