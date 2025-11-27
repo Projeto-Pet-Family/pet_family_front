@@ -1,67 +1,93 @@
-import React, { useState } from "react";
-import { criarHospedagem } from "../../../api/hospedagem/hospedagem";
-import "./register.css";
+import "./insert_address.css";
+import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 
-const RegistrationForm = () => {
+const InsertAddress = () => {
   const [formData, setFormData] = useState({
-    nome: "",
+    rua: "",
     estado: "",
     numero: "",
     cidade: "",
-    rua: "",
     bairro: "",
     cep: "",
   });
 
+  // Carregar dados do cache quando o componente montar
+  useEffect(() => {
+    const cachedData = localStorage.getItem('hospedagem_address_data');
+    if (cachedData) {
+      try {
+        const parsedData = JSON.parse(cachedData);
+        setFormData({
+          rua: parsedData.rua || "",
+          estado: parsedData.estado || "",
+          numero: parsedData.numero || "",
+          cidade: parsedData.cidade || "",
+          bairro: parsedData.bairro || "",
+          cep: parsedData.cep || "",
+        });
+      } catch (error) {
+        console.error("Erro ao carregar dados do cache:", error);
+      }
+    }
+  }, []);
+
   function handleChange(e) {
-    setFormData({
+    const newFormData = {
       ...formData,
       [e.target.name]: e.target.value,
-    });
+    };
+    
+    setFormData(newFormData);
+    
+    // Salvar no cache automaticamente a cada alteração
+    localStorage.setItem('hospedagem_address_data', JSON.stringify(newFormData));
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
 
     try {
-      const resposta = await criarHospedagem(formData);
-      console.log("Salvo:", resposta);
+      // Validação básica antes de prosseguir
+      if (!formData.rua || !formData.estado || !formData.numero || !formData.cidade || !formData.bairro || !formData.cep) {
+        alert("Por favor, preencha todos os campos!");
+        return;
+      }
 
-      alert("Hospedagem registrada com sucesso!");
-
-      // LIMPAR CAMPOS
+      // Limpar campos após submit (opcional)
       setFormData({
-        nome: "",
+        rua: "",
         estado: "",
         numero: "",
         cidade: "",
-        rua: "",
         bairro: "",
         cep: "",
       });
 
     } catch (err) {
       console.error("Erro ao salvar:", err);
-      alert("Erro ao salvar hospedagem!");
+      alert("Erro ao salvar endereço!");
     }
   }
 
   return (
     <div className="registration-container">
-      <div className="form-header">
+      <section className="section-petfamily">
         <h1>PetFamily</h1>
-        <h2>Insira</h2>
-        <h3>Seus dados</h3>
+      </section>
+      <div className="form-header">
+        <h2>Insira endereço da</h2>
+        <h3>Hospedagem</h3>
       </div>
 
       <form className="registration-form" onSubmit={handleSubmit}>
-        
-        <div className="form-group">
-          <label>Nome da hospedagem</label>
+
+        <div className="form-group two-thirds-width">
+          <label>Rua</label>
           <input 
             type="text"
-            name="nome"
-            value={formData.nome}
+            name="rua"
+            value={formData.rua}
             onChange={handleChange}
             required
           />
@@ -102,17 +128,6 @@ const RegistrationForm = () => {
           />
         </div>
 
-        <div className="form-group two-thirds-width">
-          <label>Rua</label>
-          <input 
-            type="text"
-            name="rua"
-            value={formData.rua}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
         <div className="form-row">
           <div className="form-group half-width">
             <label>Bairro</label>
@@ -136,14 +151,16 @@ const RegistrationForm = () => {
             />
           </div>
         </div>
-
-        <button type="submit" className="next-button">
-          Próximo →
-        </button>
+        
+        <Link to='/confirm-datas'>
+          <button type="submit" className="next-button">
+            Próximo →
+          </button>
+        </Link>
 
       </form>
     </div>
   );
 };
 
-export default RegistrationForm;
+export default InsertAddress;

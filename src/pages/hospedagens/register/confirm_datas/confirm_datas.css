@@ -1,0 +1,269 @@
+.registration-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.form-header {
+  text-align: center;
+  margin: 2.5em 0;
+}
+
+.section-petfamily h1 {
+  text-align: center;
+  color: #ccc;
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.form-header h2 {
+  color: #000;
+  font-size: 20px;
+  font-weight: normal;
+}
+
+.form-header h3 {
+  font-size: 35px;
+  font-weight: bold;
+  color: #000000;
+}
+
+.confirmation-form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* Container dos painéis lado a lado */
+.panels-container {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+/* Painéis individuais */
+.data-panel {
+  flex: 1;
+  background-color: #f8f9fa;
+  padding: 25px;
+  border-radius: 15px;
+  border-left: 4px solid #F97F2A;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #e7e7e7;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.data-group {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  flex: 1;
+}
+
+.data-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.data-label {
+  font-size: 14px;
+  color: #666;
+  font-weight: 500;
+}
+
+.data-value {
+  font-size: 16px;
+  color: #000;
+  font-weight: 600;
+  padding: 10px 15px;
+  background-color: #e7e7e7;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  min-height: 20px;
+}
+
+/* Botões de Ação */
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.edit-buttons-row {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.edit-button {
+  background-color: #6c757d;
+  color: white;
+  padding: 15px 25px;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s;
+  flex: 1;
+  max-width: 200px;
+}
+
+.edit-button:hover {
+  background-color: #5a6268;
+  color: white;
+  text-decoration: none;
+}
+
+.confirm-button {
+  background-color: #F97F2A;
+  color: rgb(0, 0, 0);
+  padding: 18px;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.confirm-button:hover {
+  background-color: #f39c2a;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .registration-container {
+    max-width: 500px;
+    padding: 15px;
+  }
+  
+  .panels-container {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .data-panel {
+    min-height: auto;
+    padding: 20px;
+  }
+  
+  .edit-buttons-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .edit-button {
+    max-width: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-header h3 {
+    font-size: 28px;
+  }
+  
+  .data-panel {
+    padding: 15px;
+  }
+  
+  .data-value {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+}
+
+/* Popup de Sucesso */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.success-popup {
+  background: white;
+  padding: 40px 30px;
+  border-radius: 20px;
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  animation: popupAppear 0.3s ease-out;
+}
+
+@keyframes popupAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.popup-icon {
+  font-size: 60px;
+  color: #28a745;
+  margin-bottom: 20px;
+  background: #f8fff9;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  border: 4px solid #28a745;
+}
+
+.popup-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.popup-message {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 25px;
+}
+
+.popup-button {
+  background-color: #F97F2A;
+  color: rgb(0, 0, 0);
+  padding: 15px 30px;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+  width: 100%;
+}
+
+.popup-button:hover {
+  background-color: #f39c2a;
+}

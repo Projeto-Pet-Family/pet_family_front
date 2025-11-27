@@ -1,6 +1,8 @@
-import HomeScreen from "./pages/hospedagens/home/home";
-import RegistrationForm from "./pages/hospedagens/register/register";
+/* import HomeScreen from "./pages/hospedagens/home/home";
+import RegistrationForm from "./pages/hospedagens/register/insert_basic_datas/insert_basic_datas"; */
 import LoginScreen from "./pages/hospedagens/login/login";
+import InsertBasicDatas from "./pages/hospedagens/register/insert_datas/insert_datas";
+import InsertAddress from "./pages/hospedagens/register/insert_address/insert_address";
 import HomePage from "./pages/hospedagens/home-page/home-page";
 import Agendamento from "./pages/hospedagens/agendamento/agendamento";
 import ServicoScreen from "./pages/hospedagens/servico/servico";
@@ -10,14 +12,21 @@ import Mensagens from "./pages/hospedagens/mensagens/mensagens";
 import Configuracoes from "./pages/hospedagens/configuracoes/configuracoes"; 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
+import ConfirmDatas from "./pages/hospedagens/register/confirm_datas/confirm_datas";
 
 export default function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<HomeScreen />} />
-          <Route path="/register" element={<RegistrationForm />} />
+          {/* <Route path="/" element={<HomeScreen />} /> */}
+          <Route path="/" element={<LoginScreen />} />
+
+          {/* registrando hospedagem */}
+          <Route path="/insert-basic-datas" element={<InsertBasicDatas />} />
+          <Route path="/insert-address" element={<InsertAddress />} />
+          <Route path="/confirm-datas" element={<ConfirmDatas />} />
+
           <Route path="/login" element={<LoginScreen />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/agendamento" element={<Agendamento />} />
