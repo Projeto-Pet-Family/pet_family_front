@@ -5,9 +5,11 @@ import {
   Home, Calendar, Wrench, Users, MessageSquare, 
   FileText, Settings, Boxes 
 } from "lucide-react";
+import {useNavigate} from 'react-router-dom';
 
 const HomePage = () => {
   const [hospedagem, setHospedagem] = useState(null);
+  const navigate = useNavigate();
 
   // Carregar dados da hospedagem do cache quando o componente montar
   useEffect(() => {
@@ -46,6 +48,8 @@ const HomePage = () => {
     
     // Redirecionar para login
     window.location.href = '/login';
+
+    navigate('/login');
   };
 
   return (
