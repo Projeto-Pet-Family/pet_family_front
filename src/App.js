@@ -10,6 +10,7 @@ import FuncionarioScreen from "./pages/hospedagens/funcionario/funcionario";
 import Documentos from "./pages/hospedagens/documentos/documentos";
 import Mensagens from "./pages/hospedagens/mensagens/mensagens";
 import Configuracoes from "./pages/hospedagens/configuracoes/configuracoes"; 
+import Interacoes from "./pages/hospedagens/interacao/interacoes";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import ConfirmDatas from "./pages/hospedagens/register/confirm_datas/confirm_datas";
@@ -26,14 +27,14 @@ export default function App() {
           <Route path="/insert-basic-datas" element={<InsertBasicDatas />} />
           <Route path="/insert-address" element={<InsertAddress />} />
           <Route path="/confirm-datas" element={<ConfirmDatas />} />
-
+          <Route path="/interacoes" element={<Interacoes />} />
           <Route path="/login" element={<LoginScreen />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/agendamento" element={<Agendamento />} />
           <Route path="/servico" element={<ServicoScreen />} />
           <Route path="/funcionario" element={<FuncionarioScreen />} />
           <Route path="/documentos" element={<Documentos />} />
-          <Route path="/mensagem" element={<Mensagens />} />
+          <Route path="/mensagens" element={<Mensagens />} />
           <Route path="/configuracoes" element={<Configuracoes />} />
         </Routes>
       </BrowserRouter>

@@ -102,11 +102,7 @@ const Mensagens = () => {
             </div>
 
             <div className="chat-input-area">
-              <input 
-                type="text" 
-                placeholder="Digite uma mensagem..." 
-                disabled={!selecionada}
-              />
+              <input type="text" placeholder="Digite uma mensagem..." />
               <button disabled={!selecionada}>Enviar</button>
             </div>
 

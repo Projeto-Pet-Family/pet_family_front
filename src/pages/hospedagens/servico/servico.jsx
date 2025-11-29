@@ -10,6 +10,10 @@ const ServicoScreen = () => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
 
+const [popupExcluir, setPopupExcluir] = useState(false);
+const [serviceToDelete, setServiceToDelete] = useState(null);
+
+
   const openAddModal = () => {
     setEditingService(null);
     setName("");
@@ -23,6 +27,17 @@ const ServicoScreen = () => {
     setPrice(service.price);
     setModalOpen(true);
   };
+
+  const abrirPopupExcluir = (service) => {
+  setServiceToDelete(service);
+  setPopupExcluir(true);
+  };
+
+  const confirmarExclusao = () => {
+  setServices(services.filter((s) => s.id !== serviceToDelete.id));
+  setPopupExcluir(false);
+};
+
 
   const saveService = () => {
     if (!name.trim()) return;
@@ -43,9 +58,6 @@ const ServicoScreen = () => {
     setModalOpen(false);
   };
 
-  const deleteService = (id) => {
-    setServices(services.filter((s) => s.id !== id));
-  };
 
   return (
     <div className="container">
@@ -87,14 +99,35 @@ const ServicoScreen = () => {
                   <button className="edit" onClick={() => openEditModal(service)}>
                     <Pencil size={16}/>
                   </button>
-                  <button className="delete" onClick={() => deleteService(service.id)}>
-                    <Trash2 size={16}/>
+                  <button className="delete" onClick={() => abrirPopupExcluir(service)}>
+                  <Trash2 size={16}/>
                   </button>
                 </div>
               </div>
             ))
           )}
         </div>
+
+        {popupExcluir && (
+          <div className="modal">
+            <div className="modal-box">
+              <h2>Excluir Serviço</h2>
+              <p>
+                Tem certeza que deseja excluir o serviço <strong>{serviceToDelete?.name}</strong>?
+              </p>
+
+              <div className="modal-actions">
+                <button className="save" onClick={confirmarExclusao}>
+                  Confirmar
+                </button>
+
+                <button className="cancel" onClick={() => setPopupExcluir(false)}>
+                  Cancelar
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
 
         {modalOpen && (
           <div className="modal">

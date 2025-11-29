@@ -74,7 +74,7 @@ const HomePage = () => {
             <Users size={16}/> Funcionários
           </Link>
 
-          <Link className="menu-item" to="/mensagem">
+          <Link className="menu-item" to="/mensagens">
             <MessageSquare size={16}/> Mensagens
           </Link>
 

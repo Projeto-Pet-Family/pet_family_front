@@ -156,3 +156,143 @@
   flex-direction: column;
   align-items:center;
 }
+
+
+
+.popup-agendamento {
+  width: 600px;             
+  padding: 25px 30px;
+  border-radius: 20px;
+  position: relative;
+  animation: popupShow 0.2s ease;
+}
+
+
+@keyframes popupShow {
+  from { transform: scale(0.9); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  font-size: 22px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.popup h2 {
+  font-size: 16px;
+  color: #999;
+  margin-bottom: 20px;
+}
+
+
+.popup-header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.popup-header h3 {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.popup-header p {
+  font-size: 14px;
+  color: #666;
+}
+
+.popup-total {
+  font-size: 28px;
+  margin: 0;
+}
+
+
+.popup-pets-list {
+  width: 100%;
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+
+.pet-box {
+  background: #fbd2b1;
+  padding: 15px;
+  border-radius: 15px;
+  border: 3px solid #12121307;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* infos do pet */
+.pet-info h4 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.pet-info p {
+  font-size: 13px;
+  margin: 2px 0;
+}
+
+/* serviços */
+.pet-servicos {
+  text-align: right;
+}
+
+.pet-servicos strong {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.pet-servicos p {
+  font-size: 13px;
+  margin: 2px 0;
+}
+
+
+
+.popup-buttons {
+  margin-top: 25px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  width: 100%;
+}
+
+.btn-ok,
+.btn-confirmar,
+.btn-negar {
+  padding: 8px 18px;
+  border: none;
+  cursor: pointer;
+  border-radius: 20px;
+  font-size: 15px;
+}
+
+.btn-ok {
+  background: #ffa94d;
+}
+.btn-confirmar {
+  background: #4cd137;
+}
+.btn-negar {
+  background: #ff4d4d;
+}
+
+.btn-ok:hover {
+  background: #ff8a0a;
+}
+.btn-confirmar:hover {
+  background: #32b822;
+}
+.btn-negar:hover {
+  background: #e60000;
+}
