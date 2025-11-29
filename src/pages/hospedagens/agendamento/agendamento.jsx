@@ -9,14 +9,16 @@ import {
 
 const Agendamento = () => {
   const [statusFiltro, setStatusFiltro] = useState("em_aprovacao");
+
   const [popupData, setPopupData] = useState(null);
 
-  // NOVOS STATES PARA POPUP DE CONFIRMAR/NEGAR
   const [confirmPopup, setConfirmPopup] = useState(null);
   const [denyPopup, setDenyPopup] = useState(null);
-  const [motivoNegacao, setMotivoNegacao] = useState("");
 
-  // LISTA SIMULADA COM ESTADO EDITAVEL
+  const [cancelPopup, setCancelPopup] = useState(null);
+  const [motivoTexto, setMotivoTexto] = useState("");
+
+  // LISTA SIMULATION
   const [lista, setLista] = useState([
     {
       id: 1,
@@ -60,7 +62,8 @@ const Agendamento = () => {
       data: "10/12/2025",
       status: "negado",
       total: 75,
-      pets: []
+      pets: [],
+      motivo: "Sem disponibilidade"
     }
   ]);
 
@@ -72,14 +75,7 @@ const Agendamento = () => {
     setPopupData(item);
   };
 
-
-  const abrirConfirmar = (item) => {
-    setConfirmPopup(item);
-  };
-
-  const abrirNegar = (item) => {
-    setDenyPopup(item);
-  };
+  const abrirConfirmar = (item) => setConfirmPopup(item);
 
   const confirmarAgendamento = (id) => {
     setLista((prev) =>
@@ -87,22 +83,46 @@ const Agendamento = () => {
         item.id === id ? { ...item, status: "aprovado" } : item
       )
     );
+
     setConfirmPopup(null);
     setPopupData(null);
   };
 
 
+  const abrirNegar = (item) => setDenyPopup(item);
+
   const negarAgendamento = (id) => {
-    if (!motivoNegacao.trim()) return;
+    if (!motivoTexto.trim()) return;
 
     setLista((prev) =>
       prev.map((item) =>
-        item.id === id ? { ...item, status: "negado", motivo: motivoNegacao } : item
+        item.id === id
+          ? { ...item, status: "negado", motivo: motivoTexto }
+          : item
       )
     );
 
+    setMotivoTexto("");
     setDenyPopup(null);
-    setMotivoNegacao("");
+    setPopupData(null);
+  };
+
+
+  const abrirCancelar = (item) => setCancelPopup(item);
+
+  const cancelarAgendamento = (id) => {
+    if (!motivoTexto.trim()) return;
+
+    setLista((prev) =>
+      prev.map((item) =>
+        item.id === id
+          ? { ...item, status: "cancelado", motivo: motivoTexto }
+          : item
+      )
+    );
+
+    setMotivoTexto("");
+    setCancelPopup(null);
     setPopupData(null);
   };
 
@@ -138,6 +158,7 @@ const Agendamento = () => {
             <option value="em_aprovacao">Em aprovação</option>
             <option value="aprovado">Aprovado</option>
             <option value="negado">Negado</option>
+            <option value="cancelado">Cancelado</option>
             <option value="todos">Todos</option>
           </select>
         </div>
@@ -168,13 +189,23 @@ const Agendamento = () => {
                     </button>
                   </>
                 )}
+
+                {item.status === "aprovado" && (
+                  <button 
+                    className="button-negar" 
+                    onClick={() => abrirCancelar(item)}
+                  >
+                    Cancelar
+                  </button>
+                )}
               </div>
             </div>
           ))}
         </div>
       </main>
 
-      {/* -------------------- POPUP DETALHES -------------------- */}
+
+
       {popupData && (
         <div className="popup-overlay" onClick={() => setPopupData(null)}>
           <div className="popup popup-agendamento" onClick={(e) => e.stopPropagation()}>
@@ -202,7 +233,9 @@ const Agendamento = () => {
                   </div>
 
                   <div className="pet-servicos">
-                    <strong>Serviços - R$ {pet.servicos.reduce((acc, s) => acc + s.valor, 0)}</strong>
+                    <strong>
+                      Serviços - R$ {pet.servicos.reduce((acc, s) => acc + s.valor, 0)}
+                    </strong>
 
                     {pet.servicos.map((s, i) => (
                       <p key={i}>R$ {s.valor},00 — {s.nome}</p>
@@ -219,14 +252,24 @@ const Agendamento = () => {
               </div>
             )}
 
-            {popupData.status !== "em_aprovacao" && (
+            {popupData.status === "aprovado" && (
+              <div className="popup-buttons">
+                <button className="btn-negar" onClick={() => abrirCancelar(popupData)}>
+                  Cancelar agendamento
+                </button>
+              </div>
+            )}
+
+            {popupData.status !== "em_aprovacao" && popupData.status !== "aprovado" && (
               <button className="btn-ok" onClick={() => setPopupData(null)}>OK</button>
             )}
+
           </div>
         </div>
       )}
 
-      {/* -------------------- POPUP CONFIRMAR -------------------- */}
+
+
       {confirmPopup && (
         <div className="popup-overlay" onClick={() => setConfirmPopup(null)}>
           <div className="popup" onClick={(e) => e.stopPropagation()}>
@@ -246,7 +289,9 @@ const Agendamento = () => {
         </div>
       )}
 
-      {/* -------------------- POPUP NEGAR -------------------- */}
+
+
+
       {denyPopup && (
         <div className="popup-overlay" onClick={() => setDenyPopup(null)}>
           <div className="popup" onClick={(e) => e.stopPropagation()}>
@@ -254,8 +299,8 @@ const Agendamento = () => {
 
             <textarea
               placeholder="Motivo da negação..."
-              value={motivoNegacao}
-              onChange={(e) => setMotivoNegacao(e.target.value)}
+              value={motivoTexto}
+              onChange={(e) => setMotivoTexto(e.target.value)}
               style={{
                 width: "100%",
                 height: "80px",
@@ -277,6 +322,45 @@ const Agendamento = () => {
                 onClick={() => setDenyPopup(null)}
               >
                 Cancelar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+
+
+
+      {cancelPopup && (
+        <div className="popup-overlay" onClick={() => setCancelPopup(null)}>
+          <div className="popup" onClick={(e) => e.stopPropagation()}>
+            <h3>Cancelar agendamento</h3>
+
+            <textarea
+              placeholder="Motivo do cancelamento..."
+              value={motivoTexto}
+              onChange={(e) => setMotivoTexto(e.target.value)}
+              style={{
+                width: "100%",
+                height: "80px",
+                borderRadius: "8px",
+                padding: "8px"
+              }}
+            />
+
+            <div className="popup-buttons">
+              <button 
+                className="btn-negar" 
+                onClick={() => cancelarAgendamento(cancelPopup.id)}
+              >
+                Cancelar agendamento
+              </button>
+
+              <button 
+                className="btn-ok" 
+                onClick={() => setCancelPopup(null)}
+              >
+                Fechar
               </button>
             </div>
           </div>
