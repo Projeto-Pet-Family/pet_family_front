@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./agendamento.css";
 
 import { Link } from 'react-router-dom';
-
 import { 
   Home, Calendar, Wrench, Users, MessageSquare, 
   FileText, Settings, Boxes, PawPrint 
@@ -12,8 +11,13 @@ const Agendamento = () => {
   const [statusFiltro, setStatusFiltro] = useState("em_aprovacao");
   const [popupData, setPopupData] = useState(null);
 
-  // LISTA SIMULADA 
-  const lista = [
+  // NOVOS STATES PARA POPUP DE CONFIRMAR/NEGAR
+  const [confirmPopup, setConfirmPopup] = useState(null);
+  const [denyPopup, setDenyPopup] = useState(null);
+  const [motivoNegacao, setMotivoNegacao] = useState("");
+
+  // LISTA SIMULADA COM ESTADO EDITAVEL
+  const [lista, setLista] = useState([
     {
       id: 1,
       nome: "Tutor 1 da Silva",
@@ -58,7 +62,7 @@ const Agendamento = () => {
       total: 75,
       pets: []
     }
-  ];
+  ]);
 
   const filtrados = lista.filter(
     (item) => statusFiltro === "todos" || item.status === statusFiltro
@@ -68,12 +72,38 @@ const Agendamento = () => {
     setPopupData(item);
   };
 
-  const handleConfirmar = (id) => {
-    console.log("Confirmado:", id);
+
+  const abrirConfirmar = (item) => {
+    setConfirmPopup(item);
   };
 
-  const handleNegar = (id) => {
-    console.log("Negado:", id);
+  const abrirNegar = (item) => {
+    setDenyPopup(item);
+  };
+
+  const confirmarAgendamento = (id) => {
+    setLista((prev) =>
+      prev.map((item) =>
+        item.id === id ? { ...item, status: "aprovado" } : item
+      )
+    );
+    setConfirmPopup(null);
+    setPopupData(null);
+  };
+
+
+  const negarAgendamento = (id) => {
+    if (!motivoNegacao.trim()) return;
+
+    setLista((prev) =>
+      prev.map((item) =>
+        item.id === id ? { ...item, status: "negado", motivo: motivoNegacao } : item
+      )
+    );
+
+    setDenyPopup(null);
+    setMotivoNegacao("");
+    setPopupData(null);
   };
 
   return (
@@ -123,8 +153,19 @@ const Agendamento = () => {
 
                 {item.status === "em_aprovacao" && (
                   <>
-                    <button className="button-confirmar" onClick={() => handleConfirmar(item.id)}>Confirmar</button>
-                    <button className="button-negar" onClick={() => handleNegar(item.id)}>Negar</button>
+                    <button 
+                      className="button-confirmar" 
+                      onClick={() => abrirConfirmar(item)}
+                    >
+                      Confirmar
+                    </button>
+
+                    <button 
+                      className="button-negar" 
+                      onClick={() => abrirNegar(item)}
+                    >
+                      Negar
+                    </button>
                   </>
                 )}
               </div>
@@ -133,11 +174,10 @@ const Agendamento = () => {
         </div>
       </main>
 
-
+      {/* -------------------- POPUP DETALHES -------------------- */}
       {popupData && (
         <div className="popup-overlay" onClick={() => setPopupData(null)}>
           <div className="popup popup-agendamento" onClick={(e) => e.stopPropagation()}>
-
             <button className="close-btn" onClick={() => setPopupData(null)}>✖</button>
 
             <h2>PetFamily</h2>
@@ -154,7 +194,6 @@ const Agendamento = () => {
             <div className="popup-pets-list">
               {popupData.pets.map((pet, index) => (
                 <div key={index} className="pet-box">
-
                   <div className="pet-info">
                     <h4><PawPrint size={16}/> {pet.nome}</h4>
                     <p>{pet.especie}</p>
@@ -173,12 +212,73 @@ const Agendamento = () => {
               ))}
             </div>
 
-            <div className="popup-buttons">
-              <button className="btn-ok" onClick={() => setPopupData(null)}>OK</button>
-              <button className="btn-confirmar" onClick={() => handleConfirmar(popupData.id)}>Confirmar</button>
-              <button className="btn-negar" onClick={() => handleNegar(popupData.id)}>Negar</button>
-            </div>
+            {popupData.status === "em_aprovacao" && (
+              <div className="popup-buttons">
+                <button className="btn-confirmar" onClick={() => abrirConfirmar(popupData)}>Confirmar</button>
+                <button className="btn-negar"     onClick={() => abrirNegar(popupData)}>Negar</button>
+              </div>
+            )}
 
+            {popupData.status !== "em_aprovacao" && (
+              <button className="btn-ok" onClick={() => setPopupData(null)}>OK</button>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* -------------------- POPUP CONFIRMAR -------------------- */}
+      {confirmPopup && (
+        <div className="popup-overlay" onClick={() => setConfirmPopup(null)}>
+          <div className="popup" onClick={(e) => e.stopPropagation()}>
+            <h3>Confirmar hospedagem?</h3>
+            <p>{confirmPopup.nome}</p>
+
+            <div className="popup-buttons">
+              <button className="btn-confirmar" onClick={() => confirmarAgendamento(confirmPopup.id)}>
+                Confirmar
+              </button>
+
+              <button className="btn-negar" onClick={() => setConfirmPopup(null)}>
+                Cancelar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* -------------------- POPUP NEGAR -------------------- */}
+      {denyPopup && (
+        <div className="popup-overlay" onClick={() => setDenyPopup(null)}>
+          <div className="popup" onClick={(e) => e.stopPropagation()}>
+            <h3>Negar hospedagem</h3>
+
+            <textarea
+              placeholder="Motivo da negação..."
+              value={motivoNegacao}
+              onChange={(e) => setMotivoNegacao(e.target.value)}
+              style={{
+                width: "100%",
+                height: "80px",
+                borderRadius: "8px",
+                padding: "8px"
+              }}
+            />
+
+            <div className="popup-buttons">
+              <button 
+                className="btn-negar" 
+                onClick={() => negarAgendamento(denyPopup.id)}
+              >
+                Negar
+              </button>
+
+              <button 
+                className="btn-ok" 
+                onClick={() => setDenyPopup(null)}
+              >
+                Cancelar
+              </button>
+            </div>
           </div>
         </div>
       )}
