@@ -1,0 +1,52 @@
+.avaliacoes-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.avaliacao-card {
+  background: #fff;
+  padding: 18px;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+.avaliacao-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.avaliacao-stars {
+  display: flex;
+  gap: 4px;
+}
+
+.avaliacao-comentario {
+  background: #f3f3f3;
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 6px;
+}
+
+.resposta-box {
+  background: #e7f5ff;
+  padding: 10px;
+  border-left: 4px solid #84cf90;
+  border-radius: 6px;
+  margin-top: 10px;
+}
+
+.btn-responder {
+  margin-top: 12px;
+  padding: 10px 14px;
+  background: #84cf90;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.resposta-popup textarea {
+  border: 1px solid #ccc;
+}

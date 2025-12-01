@@ -82,7 +82,7 @@ const HomePage = () => {
             <Boxes size={16}/> Interações
           </Link>
 
-          <Link className="menu-item" to="/documento">
+          <Link className="menu-item" to="/documentos">
             <FileText size={16}/> Documentos
           </Link>
 

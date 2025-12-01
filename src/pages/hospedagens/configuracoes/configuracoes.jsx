@@ -1,11 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import "./configuracoes.css";
-import { Link } from 'react-router-dom';
-import { Home, Calendar, Wrench, Users, MessageSquare, FileText, Settings, Boxes } from "lucide-react";
+import { Link } from "react-router-dom";
+import {
+  Home,
+  Calendar,
+  Wrench,
+  Users,
+  MessageSquare,
+  FileText,
+  Settings,
+  Boxes
+} from "lucide-react";
 
 const Configuracoes = () => {
+  const [dados, setDados] = useState({
+   // tava sem ideia
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setDados((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const salvarAlteracoes = () => {
+    alert("Alterações salvas com sucesso!");
+    console.log("Dados atualizados:", dados);
+  };
+
   return (
     <div className="container">
+
+
       <aside className="sidebar">
         <h2 className="logo">PetFamily</h2>
 
@@ -23,9 +48,42 @@ const Configuracoes = () => {
         <button className="logout">⟵ Sair</button>
       </aside>
 
+
       <main className="content">
-        <h1>Configurações</h1>
+        <h1>Configurações da Hospedagem</h1>
+
+        <div className="config-card">
+
+          <label>Nome da hospedagem</label>
+          <input
+            type="text"
+            name="nomeHospedagem"
+            value={dados.nomeHospedagem}
+            onChange={handleChange}
+          />
+
+          <label>Endereço</label>
+          <input
+            type="text"
+            name="endereco"
+            value={dados.endereco}
+            onChange={handleChange}
+          />
+
+          <label>Telefone</label>
+          <input
+            type="text"
+            name="telefone"
+            value={dados.telefone}
+            onChange={handleChange}
+          />
+
+          <button className="btn-salvar" onClick={salvarAlteracoes}>
+            Salvar alterações
+          </button>
+        </div>
       </main>
+
     </div>
   );
 };

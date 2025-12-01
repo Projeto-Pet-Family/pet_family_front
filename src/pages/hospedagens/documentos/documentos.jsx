@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import "./documentos.css";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { Home, Calendar, Wrench, Users, MessageSquare, FileText, Settings, Boxes } from "lucide-react";
 
 const Documentos = () => {
+  const [cnpjFile, setCnpjFile] = useState(null);
+  const [alvaraFile, setAlvaraFile] = useState(null);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("CNPJ:", cnpjFile);
+    console.log("Alvará:", alvaraFile);
+  };
+
   return (
     <div className="container">
       <aside className="sidebar">
@@ -25,6 +34,29 @@ const Documentos = () => {
 
       <main className="content">
         <h1>Documentos</h1>
+
+        <form className="documentos-container" onSubmit={handleSubmit}>
+          
+          <div className="input-group">
+            <label>CNPJ da Hospedagem</label>
+            <input
+              type="file"
+              accept=".pdf,.png,.jpg,.jpeg"
+              onChange={(e) => setCnpjFile(e.target.files[0])}
+            />
+          </div>
+
+          <div className="input-group">
+            <label>Alvará da Hospedagem</label>
+            <input
+              type="file"
+              accept=".pdf,.png,.jpg,.jpeg"
+              onChange={(e) => setAlvaraFile(e.target.files[0])}
+            />
+          </div>
+
+          <button type="submit" className="save-button">Enviar Documentos</button>
+        </form>
       </main>
     </div>
   );
