@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './login.css';
 import api from '../../../api/api.js';
+import { saveIdHospedagem } from '../../../utils/authUtils.js'; // Importe a função
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
@@ -40,6 +41,26 @@ const LoginScreen = () => {
       } else {
         sessionStorage.setItem('user', JSON.stringify(data));
         sessionStorage.setItem('token', response.data.token || 'authenticated');
+      }
+
+      // *** NOVA LINHA ADICIONADA: Salvar o idHospedagem ***
+      // Extrair idHospedagem da resposta da API
+      const idHospedagem = data.idhospedagem || data.idHospedagem || data.hospedagem?.idhospedagem || data.hospedagem?.idHospedagem || data.id;
+
+      console.log("Tentando extrair idhospedagem:", { 
+        dataIdhospedagem: data.idhospedagem,
+        dataIdHospedagem: data.idHospedagem,
+        dataHospedagemIdhospedagem: data.hospedagem?.idhospedagem,
+        dataHospedagemIdHospedagem: data.hospedagem?.idHospedagem,
+        dataId: data.id 
+      });
+
+      if (idHospedagem) {
+        saveIdHospedagem(idHospedagem, rememberMe);
+        console.log("idhospedagem salvo com sucesso:", idHospedagem);
+      } else {
+        console.error("idhospedagem NÃO encontrado na resposta!");
+        console.log("Dados completos recebidos:", data);
       }
 
       // Redirecionar para dashboard ou página principal
