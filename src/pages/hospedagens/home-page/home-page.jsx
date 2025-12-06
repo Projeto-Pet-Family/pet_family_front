@@ -86,7 +86,7 @@ const HomePage = () => {
             <FileText size={16}/> Documentos
           </Link>
 
-          <Link className="menu-item" to="/configuracao">
+          <Link className="menu-item" to="/configuracoes">
             <Settings size={16}/> Configurações
           </Link>
         </nav>
