@@ -86,7 +86,7 @@ const [funcionarioVerMais, setFuncionarioVerMais] = useState(null);
             <MessageSquare size={16}/> Mensagens
           </Link>
 
-          <Link className="menu-item" to="/interacao">
+          <Link className="menu-item" to="/interacoes">
             <Boxes size={16}/> Interações
           </Link>
 
