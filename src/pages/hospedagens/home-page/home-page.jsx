@@ -70,9 +70,9 @@ const HomePage = () => {
             <Wrench size={16}/> Serviços
           </Link>
 
-          <Link className="menu-item" to="/funcionario">
+{/*           <Link className="menu-item" to="/funcionario">
             <Users size={16}/> Funcionários
-          </Link>
+          </Link> */}
 
           <Link className="menu-item" to="/mensagens">
             <MessageSquare size={16}/> Mensagens
