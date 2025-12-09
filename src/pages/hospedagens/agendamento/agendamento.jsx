@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./agendamento.css";
 import api from "../../../api/api.js";
-import { logout } from "../../../utils/authUtils.js";
+import { logout, getIdHospedagem } from "../../../utils/authUtils.js";
 import { Link } from "react-router-dom";
 import {
   Home, Calendar, Wrench, Users, MessageSquare,
@@ -24,7 +24,8 @@ const Agendamento = () => {
 
   const carregarContratos = async () => {
     try {
-      const response = await api.get('/contrato');
+      const response = await api.get(`/contrato/ler-contrato-hospedagem/${getIdHospedagem()}`);
+
       
       console.log('Resposta da API:', response.data);
       
