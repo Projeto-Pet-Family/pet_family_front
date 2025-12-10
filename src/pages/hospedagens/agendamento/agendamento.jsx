@@ -86,10 +86,9 @@ const Agendamento = () => {
     }
   };
 
-  // ALTERAR STATUS - AJUSTAR PARA SUA API
+  // ALTERAR STATUS
   const atualizarStatus = async (id, status, motivo = "") => {
     try {
-      // Ajuste o endpoint conforme sua API
       await api.put(`/contrato/${id}/status`, { 
         status_contrato: status,
         motivo: motivo 
