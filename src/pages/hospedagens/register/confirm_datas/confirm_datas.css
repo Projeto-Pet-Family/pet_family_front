@@ -267,3 +267,27 @@
 .popup-button:hover {
   background-color: #f39c2a;
 }
+/* confirm_datas.css - adicione essas regras */
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.edit-button {
+  background: none;
+  border: 1px solid #4CAF50;
+  color: #4CAF50;
+  padding: 5px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s;
+}
+
+.edit-button:hover {
+  background-color: #4CAF50;
+  color: white;
+}
