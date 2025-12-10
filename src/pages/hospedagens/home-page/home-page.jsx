@@ -78,8 +78,8 @@ const HomePage = () => {
             <MessageSquare size={16}/> Mensagens
           </Link>
 
-          <Link className="menu-item" to="/interacao">
-            <Boxes size={16}/> Interações
+          <Link className="menu-item" to="/avaliacoes">
+            <Boxes size={16}/> Avaliações
           </Link>
 
           <Link className="menu-item" to="/documentos">

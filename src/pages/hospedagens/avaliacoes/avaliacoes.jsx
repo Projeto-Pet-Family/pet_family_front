@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./interacoes.css";
+import "./avaliacoes.css";
 import { Link } from "react-router-dom";
 import {
   Home,
@@ -16,7 +16,7 @@ import {
 import api from "../../../api/api";
 import { getIdHospedagem, logout } from "../../../utils/authUtils";
 
-const Interacoes = () => {
+const Avaliacoes = () => {
   const idHospedagem = getIdHospedagem();
 
   const [avaliacoes, setAvaliacoes] = useState([]);
@@ -92,7 +92,7 @@ const Interacoes = () => {
           <Link className="menu-item" to="/servico"><Wrench size={16} /> Serviços</Link>
 {/*           <Link className="menu-item" to="/funcionario"><Users size={16} /> Funcionários</Link> */}
           <Link className="menu-item" to="/mensagens"><MessageSquare size={16} /> Mensagens</Link>
-          <Link className="menu-item active" to="/interacoes"><Boxes size={16} /> Interações</Link>
+          <Link className="menu-item active" to="/interacoes"><Boxes size={16} /> Avaliações</Link>
           <Link className="menu-item" to="/documentos"><FileText size={16} /> Documentos</Link>
           <Link className="menu-item" to="/configuracoes"><Settings size={16} /> Configurações</Link>
         </nav>
@@ -180,4 +180,4 @@ const Interacoes = () => {
   );
 };
 
-export default Interacoes;
+export default Avaliacoes;
