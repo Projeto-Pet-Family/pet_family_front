@@ -74,10 +74,10 @@ const HomePage = () => {
             <Users size={16}/> Funcionários
           </Link> */}
 
-          <Link className="menu-item" to="/mensagens">
+         {/*  <Link className="menu-item" to="/mensagens">
             <MessageSquare size={16}/> Mensagens
           </Link>
-
+ */}
           <Link className="menu-item" to="/avaliacoes">
             <Boxes size={16}/> Avaliações
           </Link>
